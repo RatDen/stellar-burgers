@@ -14,7 +14,9 @@ import {
   Register,
   ResetPassword
 } from '@pages';
-import ProtectedRoute from '../../hoc/protected-route';
+import ProtectedRoute from '../protected-route/protected-route';
+import InfoAboutIngredient from '../info-about-ingredient/info-about-ingredient';
+import InfoAboutFeed from '../info-about-order/info-about-order';
 
 const App = () => {
   const navigate = useNavigate();
@@ -30,31 +32,36 @@ const App = () => {
           </div>
         }
       >
-        <Route index element={<ConstructorPage />} />
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <ConstructorPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path='feed'
           element={
             <>
-              <Outlet />
+              <Feed />
             </>
           }
-        >
-          <Route index element={<Feed />} />
-          <Route
-            path=':number'
-            element={
-              <Modal title='' onClose={() => navigate('/feed')}>
-                <OrderInfo />
-              </Modal>
-            }
-          />
-        </Route>
+        />
+        <Route
+          path='feed/:number'
+          element={
+            <InfoAboutFeed onClose={() => navigate('/feed')}>
+              <OrderInfo />
+            </InfoAboutFeed>
+          }
+        />
         <Route
           path='ingredients/:id'
           element={
-            <Modal title='Детали ингредиента' onClose={() => navigate('/')}>
+            <InfoAboutIngredient onClose={() => navigate('/')}>
               <IngredientDetails />
-            </Modal>
+            </InfoAboutIngredient>
           }
         />
         <Route
@@ -110,7 +117,7 @@ const App = () => {
             <Route
               path=':number'
               element={
-                <Modal title='' onClose={() => navigate(-1)}>
+                <Modal title='' onClose={() => navigate('profile/orders')}>
                   <OrderInfo />
                 </Modal>
               }

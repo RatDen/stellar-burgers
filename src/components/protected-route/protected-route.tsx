@@ -1,5 +1,5 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import { useAppSelector } from '../services/store';
+import { useAppSelector } from '../../services/store';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;

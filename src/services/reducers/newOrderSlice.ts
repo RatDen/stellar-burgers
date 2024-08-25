@@ -1,5 +1,10 @@
 import { orderBurgerApi } from '@api';
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  PayloadAction,
+  createAsyncThunk,
+  createSlice,
+  nanoid
+} from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient, TOrder } from '@utils-types';
 
 type TNewOrderState = {
@@ -51,7 +56,7 @@ export const newOrderSlice = createSlice({
           ])
         : (state.constructorItems.bun = {
             ...action.payload,
-            id: action.payload._id
+            id: nanoid()
           });
     },
     moveIngredient: (
