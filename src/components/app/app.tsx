@@ -32,14 +32,7 @@ const App = () => {
           </div>
         }
       >
-        <Route
-          index
-          element={
-            <ProtectedRoute>
-              <ConstructorPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route index element={<ConstructorPage />} />
         <Route
           path='feed'
           element={
