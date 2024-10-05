@@ -1,7 +1,7 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../services/store';
-import { updateUserData } from '../../services/reducers/userSlice';
+import { updateUserData } from '../../services/reducers/userSlice/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile: FC = () => {
