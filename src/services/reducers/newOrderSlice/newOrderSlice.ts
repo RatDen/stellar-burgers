@@ -41,9 +41,9 @@ export const newOrderSlice = createSlice({
     getNewOrderData: (state) =>
       state.constructorItems.bun?._id
         ? [
-            state.constructorItems.bun?._id,
+            state.constructorItems.bun._id,
             ...state.constructorItems.ingredients.map((item) => item._id),
-            state.constructorItems.bun?._id
+            state.constructorItems.bun._id
           ]
         : []
   },
@@ -66,8 +66,13 @@ export const newOrderSlice = createSlice({
       const { index, offset } = action.payload;
       const arr = state.constructorItems.ingredients.slice();
 
-      if (index + offset >= arr.length || index + offset < 0) {
-        return state;
+      if (
+        index < 0 ||
+        index >= state.constructorItems.ingredients.length ||
+        index + offset >= arr.length ||
+        index + offset < 0
+      ) {
+        throw new Error('Выход за границы массива');
       }
 
       arr.splice(index + offset, 0, arr.splice(index, 1)[0]);
@@ -75,6 +80,12 @@ export const newOrderSlice = createSlice({
       state.constructorItems.ingredients = arr;
     },
     deleteIngredient: (state, action: PayloadAction<number>) => {
+      if (
+        action.payload < 0 ||
+        action.payload >= state.constructorItems.ingredients.length
+      ) {
+        throw new Error('Выход за границы массива');
+      }
       state.constructorItems.ingredients =
         state.constructorItems.ingredients.filter(
           (_, idx) => idx !== action.payload

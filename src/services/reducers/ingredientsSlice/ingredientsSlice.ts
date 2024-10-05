@@ -5,7 +5,7 @@ import {
   createSlice
 } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
 type TIngredientsState = {
   isLoading: boolean;

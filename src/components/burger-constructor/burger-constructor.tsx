@@ -6,7 +6,7 @@ import {
   clearOrderConstructor,
   getNewOrderData,
   orderBurger
-} from '../../services/reducers/newOrderSlice';
+} from '../../services/reducers/newOrderSlice/newOrderSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const BurgerConstructor: FC = () => {
