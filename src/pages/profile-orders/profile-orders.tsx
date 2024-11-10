@@ -1,6 +1,6 @@
 import { ProfileOrdersUI } from '@ui-pages';
 import { FC, useEffect } from 'react';
-import { getUserOrders } from '../../services/reducers/userSlice';
+import { getUserOrders } from '../../services/reducers/userSlice/userSlice';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 
 export const ProfileOrders: FC = () => {
